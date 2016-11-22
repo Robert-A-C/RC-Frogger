@@ -41,6 +41,7 @@ namespace GEX
 		sf::Text playOption;
 		playOption.setFont(font);
 		playOption.setString("Play");
+		playOption.setOutlineThickness(1);
 		centerOrigin(playOption);
 		playOption.setPosition(context.window->getView().getSize() / 2.f);
 		_options.push_back(playOption);
@@ -48,6 +49,7 @@ namespace GEX
 		sf::Text exitOption;
 		exitOption.setFont(font);
 		exitOption.setString("Exit");
+		exitOption.setOutlineThickness(1);
 		centerOrigin(exitOption);
 		exitOption.setPosition(playOption.getPosition() + sf::Vector2f(0.f, 30.f));
 		_options.push_back(exitOption);
@@ -125,8 +127,10 @@ namespace GEX
 			return;
 
 		// White all texts
-		for (sf::Text& text : _options)
+		for (sf::Text& text : _options) {
 			text.setFillColor(sf::Color::White);
+			
+		}
 
 		// Red the selected text
 		_options[_optionIndex].setFillColor(sf::Color::Red);
