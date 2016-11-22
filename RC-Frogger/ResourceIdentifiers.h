@@ -43,7 +43,8 @@ namespace GEX
 		FireRate,
 		Particle,
 		Atlas,
-		Explosion
+		Explosion,
+		Background
 
 	};
 
