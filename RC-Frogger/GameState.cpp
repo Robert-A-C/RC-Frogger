@@ -29,7 +29,7 @@ namespace GEX
 		_world(*context.window, *context.soundEffect),		
 		_player(*context.player)
 	{
-		context.music->play(MusicID::MissionTheme);
+		//context.music->play(MusicID::MissionTheme);
 	}
 
 	void GameState::draw()		// draws the world

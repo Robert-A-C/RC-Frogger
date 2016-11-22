@@ -56,7 +56,7 @@ namespace GEX
 
 		updateOptionText();
 
-		context.music->play(MusicID::MenuTheme);
+		//context.music->play(MusicID::MenuTheme);
 
 	}
 
