@@ -33,6 +33,8 @@ namespace GEX
 		_backgroundSprite.setTexture(TextureHolder::getInstance().get(TextureID::TitleScreen));
 
 		_text.setFont(FontHolder::getInstance().get(FontID::Main));
+		_text.setFillColor(sf::Color(255, 255, 255, 250));
+		_text.setOutlineThickness(1);
 		_text.setString("Press any key to start");
 		centerOrigin(_text);
 		_text.setPosition(context.window->getView().getSize() / 2.f);

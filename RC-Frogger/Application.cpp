@@ -32,7 +32,7 @@ namespace GEX
 	const sf::Time Application::TimePerFrame = sf::seconds(1.f / 60.f);
 	
 	Application::Application() :
-		_window(sf::VideoMode(1024, 768), "States", sf::Style::Close),
+		_window(sf::VideoMode(480, 600), "States", sf::Style::Close),
 		_player(),
 		_stateStack(State::Context(_window, _player, _music, _soundPlayer )),
 		_statsText()
@@ -40,7 +40,7 @@ namespace GEX
 		_window.setKeyRepeatEnabled(false);
 
 		FontHolder::getInstance().load(FontID::Main, "../Media/Sansation.ttf");								//
-		TextureHolder::getInstance().load(TextureID::TitleScreen, "../Media/Textures/TitleScreen.png");		//
+		TextureHolder::getInstance().load(TextureID::TitleScreen, "../Media/Textures/FroggerTitle.png");		//
 		TextureHolder::getInstance().load(TextureID::MenuScreen, "../Media/Textures/Title2.png");			//
 		TextureHolder::getInstance().load(TextureID::GexScreen, "../Media/Textures/face.png");				//
 		TextureHolder::getInstance().load(TextureID::Particle, "../Media/Textures/particle.png");
