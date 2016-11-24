@@ -22,6 +22,7 @@ Definition for the World class
 #include "CommandQueue.h"
 #include "Airplane.h"
 #include "SoundPlayer.h"
+#include "Frog.h"
 
 namespace GEX 
 {
@@ -100,6 +101,7 @@ namespace GEX
 		sf::Vector2f							_spawnPosition;
 		float									_scrollSpeed;
 		Airplane*								_playerAirplane;
+		Frog*									_playerFrog;
 		std::vector<SpawnPoint>					_enemieSpawnPoints;
 		std::vector<Airplane*>					_activeEnemies;
 	};

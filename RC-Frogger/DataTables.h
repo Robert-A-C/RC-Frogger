@@ -20,10 +20,17 @@ Definition for the DataTables class
 #include "Projectile.h"
 #include "Pickup.h"
 #include "Particle.h"
+#include "Frog.h"
 #include <map>
 
 namespace GEX {
 	
+	struct FrogData
+	{
+		TextureID texture;
+		sf::IntRect textureRect;
+	};
+
 	struct Direction	// direction table
 	{
 		Direction(float a, float d);
@@ -64,7 +71,7 @@ namespace GEX {
 		sf::Time lifetime;
 
 	};
-
+	std::map<Frog::Type, FrogData> initalizeFrogData();
 	std::map<Airplane::Type, AirplaneData> initalizeAircraftData();			// initalize all the data required for the airplane table
 	std::map<Projectile::Type, ProjectileData> initalizeProjectileData();	// initaliza all the data required for the projectile table
 	std::map<Pickup::Type, PickupData> initalizePickupData();	// initaliza all the data required for the projectile table

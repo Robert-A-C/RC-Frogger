@@ -44,7 +44,9 @@ namespace GEX
 		Particle,
 		Atlas,
 		Explosion,
-		Background
+		Background,
+		Frog,
+		FroggerAtlas
 
 	};
 

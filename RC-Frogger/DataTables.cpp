@@ -19,6 +19,17 @@ Declaration for the DataTables class
 
 
 namespace GEX {
+	std::map<Frog::Type, FrogData> initalizeFrogData()
+	{
+		std::map<Frog::Type, FrogData> data;
+
+		data[Frog::Type::Frogger].texture = TextureID::FroggerAtlas;
+		data[Frog::Type::Frogger].textureRect = sf::IntRect(62, 0, 30, 22);
+
+		return data;
+	}
+
+
 	std::map<Airplane::Type, AirplaneData> GEX::initalizeAircraftData()		// initalizes data in the airplane table
 	{
 		 std::map<Airplane::Type, AirplaneData> data;

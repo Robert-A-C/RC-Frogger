@@ -22,6 +22,7 @@ Declaration for the World class
 #include <algorithm>
 #include "SoundNode.h"
 #include "ParticleNode.h"
+#include "Frog.h"
 
 namespace GEX {
 
@@ -35,7 +36,7 @@ namespace GEX {
 		_sceneLayers(),
 		_commandQueue(),
 		_worldBounds(0.f, 0.f, _worldView.getSize().x, _worldView.getSize().y),
-		_spawnPosition((_worldView.getSize().x / 2.f), (_worldBounds.height - _worldView.getSize().y / 2.f)),
+		_spawnPosition((_worldView.getSize().x / 2.f), (_worldBounds.height - 40.f)),
 		_scrollSpeed(0.0f),
 		_playerAirplane(nullptr)
 	{
@@ -326,6 +327,10 @@ namespace GEX {
 		_playerAirplane = plane.get();
 		_sceneLayers[Air]->attachChild(std::move(plane));*/
 
+		std::unique_ptr<Frog> frog(new Frog(Frog::Type::Frogger));
+		frog->setPosition(_spawnPosition);
+		_playerFrog = frog.get();
+		_sceneLayers[Air]->attachChild(std::move(frog));
 
 		//addEnemies();
 
