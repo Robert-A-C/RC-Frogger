@@ -332,6 +332,8 @@ namespace GEX {
 		_playerFrog = frog.get();
 		_sceneLayers[Air]->attachChild(std::move(frog));
 
+
+
 		//addEnemies();
 
 		
