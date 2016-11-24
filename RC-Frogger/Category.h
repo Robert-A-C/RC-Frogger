@@ -24,7 +24,7 @@ namespace GEX {
 		{
 			None = 0,
 			SceneAirLayer =		1 << 0,
-			PlayerAircraft =	1 << 1,
+			Player =	1 << 1,
 			AlliedAircraft =	1 << 2,
 			EnemyAircraft =		1 << 3,
 			Pickup =			1 << 4,
@@ -33,11 +33,11 @@ namespace GEX {
 			ParticleSystem =    1 << 7,
 			SoundEffect =		1 << 8,
 
-			Airplane = PlayerAircraft | AlliedAircraft | EnemyAircraft,
+			Airplane = Player | AlliedAircraft | EnemyAircraft,
 			Projectile = AlliedProjectile | EnemyProjectile,
 
 			PlayerCollidesWith = Pickup | EnemyProjectile | EnemyAircraft,
-			EnemyCollidesWith = PlayerAircraft | AlliedAircraft | AlliedProjectile
+			EnemyCollidesWith = Player | AlliedAircraft | AlliedProjectile
 
 		};
 	}

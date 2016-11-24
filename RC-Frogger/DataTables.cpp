@@ -19,7 +19,7 @@ Declaration for the DataTables class
 
 
 namespace GEX {
-	std::map<Frog::Type, FrogData> initalizeFrogData()
+	std::map<Frog::Type, FrogData> initalizeFrogData() // initalizes frog data
 	{
 		std::map<Frog::Type, FrogData> data;
 

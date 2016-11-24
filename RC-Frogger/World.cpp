@@ -36,7 +36,7 @@ namespace GEX {
 		_sceneLayers(),
 		_commandQueue(),
 		_worldBounds(0.f, 0.f, _worldView.getSize().x, _worldView.getSize().y),
-		_spawnPosition((_worldView.getSize().x / 2.f), (_worldBounds.height - 40.f)),
+		_spawnPosition((_worldView.getSize().x / 2.f), (_worldBounds.height - 20.f)),
 		_scrollSpeed(0.0f),
 		_playerAirplane(nullptr)
 	{
@@ -45,7 +45,7 @@ namespace GEX {
 		buildScene();
 
 		// start the view at the spawn
-		_worldView.setCenter(_spawnPosition);
+		//_worldView.setCenter(_spawnPosition);
 	}
 
 	void World::update(sf::Time dt)		// updates everything
@@ -228,7 +228,7 @@ namespace GEX {
 
 		for (SceneNode::Pair pair : collisionPairs)
 		{
-			if (matchesCategories(pair, Category::PlayerAircraft, Category::EnemyAircraft))
+			if (matchesCategories(pair, Category::Player, Category::EnemyAircraft))
 			{
 				auto& player = static_cast<Airplane&>(*pair.first);
 				auto& enemy = static_cast<Airplane&>(*pair.second);
@@ -237,7 +237,7 @@ namespace GEX {
 				enemy.destroy();
 			}
 
-			if (matchesCategories(pair, Category::EnemyAircraft, Category::AlliedProjectile) || (matchesCategories(pair, Category::PlayerAircraft, Category::EnemyProjectile)))
+			if (matchesCategories(pair, Category::EnemyAircraft, Category::AlliedProjectile) || (matchesCategories(pair, Category::Player, Category::EnemyProjectile)))
 			{
 				auto& enemyPlane = static_cast<Airplane&>(*pair.first);
 				auto& projectile = static_cast<Projectile&>(*pair.second);
@@ -246,7 +246,7 @@ namespace GEX {
 				projectile.destroy();
 			}
 
-			if (matchesCategories(pair, Category::PlayerAircraft, Category::EnemyProjectile))
+			if (matchesCategories(pair, Category::Player, Category::EnemyProjectile))
 			{
 				auto& player = static_cast<Airplane&>(*pair.first);
 				auto& enemyProjectile = static_cast<Projectile&>(*pair.second);
@@ -255,7 +255,7 @@ namespace GEX {
 				enemyProjectile.destroy();
 			}
 
-			if (matchesCategories(pair, Category::PlayerAircraft, Category::Pickup))
+			if (matchesCategories(pair, Category::Player, Category::Pickup))
 			{
 				auto& player = static_cast<Airplane&>(*pair.first);
 				auto& pickup = static_cast<Pickup&>(*pair.second);
