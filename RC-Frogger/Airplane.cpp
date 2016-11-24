@@ -85,7 +85,7 @@ namespace GEX {
 		switch (_type)
 		{
 		case Type::EAGLE:
-			return Category::PlayerAircraft;
+			return Category::Player;
 
 		case Type::RAPTOR:
 			return Category::EnemyAircraft;

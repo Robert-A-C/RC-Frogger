@@ -17,7 +17,7 @@ Declaration for the PlayerControl class
 #include "PlayerControl.h"
 #include "Airplane.h"
 #include "Category.h"
-
+#include "Frog.h"
 
 namespace GEX
 {
@@ -29,6 +29,16 @@ namespace GEX
 			airplane.accelerate(velocity);
 		}
 		sf::Vector2f velocity;
+	};
+
+	struct FrogMover
+	{
+		FrogMover(float vx, float vy) : movement(vx, vy) {}
+		void operator()(Frog& frog, sf::Time) const
+		{
+			frog.setPosition(frog.getPosition() + movement);
+		}
+		sf::Vector2f movement;
 	};
 
 	struct AirplaneSpinner	// spins airplanes
@@ -76,26 +86,32 @@ namespace GEX
 
 	void PlayerControl::initalizaActionBindings()		// sets the action bindings
 	{
-		const float playerSpeed = 200.f;
+
+		_actionBindings[Action::MoveLeft].action = derivedAction<Frog>(FrogMover(-40.f, 0.f));
+		_actionBindings[Action::MoveRight].action = derivedAction<Frog>(FrogMover(+40.f, 0.f));
+		_actionBindings[Action::MoveUp].action = derivedAction<Frog>(FrogMover(0.f, -40.f));
+		_actionBindings[Action::MoveDown].action = derivedAction<Frog>(FrogMover(0.f, +40.f));
+
+		/*const float playerSpeed = 200.f;
 		_actionBindings[Action::MoveLeft].action = derivedAction<Airplane>(AirplaneMover(-playerSpeed, 0.f));
 		_actionBindings[Action::MoveRight].action = derivedAction<Airplane>(AirplaneMover(playerSpeed, 0.f));
 		_actionBindings[Action::MoveUp].action = derivedAction<Airplane>(AirplaneMover(0.f, -playerSpeed));
-		_actionBindings[Action::MoveDown].action = derivedAction<Airplane>(AirplaneMover(0.f, playerSpeed));
+		_actionBindings[Action::MoveDown].action = derivedAction<Airplane>(AirplaneMover(0.f, playerSpeed));*/
 		
-		_actionBindings[Action::FireBullet].action = derivedAction<Airplane>([](Airplane& a, sf::Time dt) {a.fire(); });
-		_actionBindings[Action::LaunchMissile].action = derivedAction<Airplane>([](Airplane& a, sf::Time dt) {a.launchMissile(); });
+		/*_actionBindings[Action::FireBullet].action = derivedAction<Airplane>([](Airplane& a, sf::Time dt) {a.fire(); });
+		_actionBindings[Action::LaunchMissile].action = derivedAction<Airplane>([](Airplane& a, sf::Time dt) {a.launchMissile(); });*/
 
 		for (auto& pair : _actionBindings)
-			pair.second.category = Category::PlayerAircraft;
+			pair.second.category = Category::Player;
 		
-		const float rotationSpeed = 0.25f;
-		//_actionBindings[Action::SpinLeft].action = derivedAction<Airplane>(AirplaneSpinner(-rotationSpeed));
-		_actionBindings[Action::SpinLeft].action = derivedAction<Airplane>([](Airplane& node, sf::Time dt) {node.accelerateAngularVelocity(-0.25f); });
-		_actionBindings[Action::SpinRight].action = derivedAction<Airplane>(AirplaneSpinner(rotationSpeed));
+		//const float rotationSpeed = 0.25f;
+		////_actionBindings[Action::SpinLeft].action = derivedAction<Airplane>(AirplaneSpinner(-rotationSpeed));
+		//_actionBindings[Action::SpinLeft].action = derivedAction<Airplane>([](Airplane& node, sf::Time dt) {node.accelerateAngularVelocity(-0.25f); });
+		//_actionBindings[Action::SpinRight].action = derivedAction<Airplane>(AirplaneSpinner(rotationSpeed));
 
 
-		_actionBindings[Action::SpinLeft].category = Category::AlliedAircraft;
-		_actionBindings[Action::SpinRight].category = Category::AlliedAircraft;
+		//_actionBindings[Action::SpinLeft].category = Category::AlliedAircraft;
+		//_actionBindings[Action::SpinRight].category = Category::AlliedAircraft;
 
 
 	}
@@ -104,10 +120,10 @@ namespace GEX
 	{
 		_keyBindings[sf::Keyboard::Q] = Action::SpinLeft;
 		_keyBindings[sf::Keyboard::E] = Action::SpinRight;
-		_keyBindings[sf::Keyboard::A] = Action::MoveLeft;
-		_keyBindings[sf::Keyboard::D] = Action::MoveRight;
-		_keyBindings[sf::Keyboard::W] = Action::MoveUp;
-		_keyBindings[sf::Keyboard::S] = Action::MoveDown;
+		_keyBindings[sf::Keyboard::Left] = Action::MoveLeft;
+		_keyBindings[sf::Keyboard::Right] = Action::MoveRight;
+		_keyBindings[sf::Keyboard::Up] = Action::MoveUp;
+		_keyBindings[sf::Keyboard::Down] = Action::MoveDown;
 		_keyBindings[sf::Keyboard::Space] = Action::FireBullet;
 		_keyBindings[sf::Keyboard::M] = Action::LaunchMissile;
 	}
@@ -125,7 +141,7 @@ namespace GEX
 
 	bool PlayerControl::isRealTimeAction(Action action)		// returns true based on action
 	{
-		switch (action)
+		/*switch (action)
 		{
 		case Action::MoveLeft:
 		case Action::MoveRight:
@@ -134,8 +150,8 @@ namespace GEX
 		case Action::SpinLeft:
 		case Action::SpinRight:
 			return true;
-		default:			
+		default:*/			
 			return false;
-		}
+		//}
 	}
 }
