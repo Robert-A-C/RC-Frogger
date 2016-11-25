@@ -50,7 +50,7 @@ namespace GEX
 		TextureHolder::getInstance().load(TextureID::Jungle, "../Media/Textures/Jungle.png");				//
 		TextureHolder::getInstance().load(TextureID::Explosion, "../Media/Textures/Explosion.png");
 		TextureHolder::getInstance().load(TextureID::FinishLine, "../Media/Textures/FinishLine.png");
-	
+		TextureHolder::getInstance().load(TextureID::lives, "../Media/Textures/FroggerAtlas.png");
 		TextureHolder::getInstance().load(TextureID::FroggerAtlas, "../Media/Textures/FroggerAtlas.png");
 		TextureHolder::getInstance().load(TextureID::Atlas, "../Media/Textures/Entities.png");
 

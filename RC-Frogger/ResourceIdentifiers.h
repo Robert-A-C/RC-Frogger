@@ -46,7 +46,8 @@ namespace GEX
 		Explosion,
 		Background,
 		Frog,
-		FroggerAtlas
+		FroggerAtlas,
+		lives
 
 	};
 
