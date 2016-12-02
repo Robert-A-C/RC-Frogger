@@ -25,6 +25,7 @@ Definition for the World class
 #include "Frog.h"
 #include "Cars.h"
 #include "Logs.h"
+#include "Turtles.h"
 
 namespace GEX 
 {
@@ -73,6 +74,19 @@ namespace GEX
 			float			y;
 		};
 
+		struct TurtleSpawn
+		{
+			TurtleSpawn(Turtles::Type type, float _x, float _y) :
+				type(type),
+				x(_x),
+				y(_y)
+			{}
+
+			Turtles::Type	type;
+			float			x;
+			float			y;
+		};
+
 	public:
 		explicit	World(sf::RenderWindow& window, SoundPlayer& soundPlayer);
 
@@ -99,7 +113,10 @@ namespace GEX
 		void		addLog(Logs::Type type, float x, float y);
 		void		addLog(LogSpawn point);
 		
-
+		void		spawnTurtles();
+		void		addTurtles();
+		void		addTurtle(Turtles::Type type, float x, float y);
+		void		addTurtle(TurtleSpawn point);
 
 		void			buildScene();						// builds the scene
 		sf::FloatRect	getViewBounds() const;				// gets view bounds
@@ -147,6 +164,7 @@ namespace GEX
 
 		std::vector<CarSpawn>					_carSpawnpoints;
 		std::vector<LogSpawn>					_logSpawnPoints;
+		std::vector<TurtleSpawn>				_turtleSpawnPoints;
 		
 	};
 }
