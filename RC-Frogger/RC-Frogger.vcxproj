@@ -158,6 +158,7 @@
     <ClCompile Include="TextNode.cpp" />
     <ClCompile Include="TextureHolder.cpp" />
     <ClCompile Include="TitleState.cpp" />
+    <ClCompile Include="Turtles.cpp" />
     <ClCompile Include="Utility.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -198,6 +199,7 @@
     <ClInclude Include="TextNode.h" />
     <ClInclude Include="TextureHolder.h" />
     <ClInclude Include="TitleState.h" />
+    <ClInclude Include="Turtles.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
