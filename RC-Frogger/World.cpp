@@ -273,15 +273,15 @@ namespace GEX {
 	}
 	void World::destroyEntitiesOutsideView()
 	{
-		Command command;
+		/*Command command;
 		command.category = Category::Car;
 		command.action = derivedAction<Entity>([this](Entity& e, sf::Time)
 		{
 			if (!getBattleFieldBounds().intersects(e.getBoundingRect()))
-				e.destroy();
+				e.setPosition();
 		});
 
-		_commandQueue.push(command);
+		_commandQueue.push(command);*/
 	}
 
 	

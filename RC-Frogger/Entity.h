@@ -42,7 +42,7 @@ namespace GEX {
 		void destroy();					// sets hitpoints to 0
 		bool isDestroyed() const override;
 		
-
+		
 
 	protected:
 		void			updateCurrent(sf::Time dt, CommandQueue& command) override;			// updates entity
