@@ -273,7 +273,7 @@ namespace GEX {
 	}
 	void World::destroyEntitiesOutsideView()
 	{
-		Command command;
+		/*Command command;
 		command.category = Category::Car;
 		command.action = derivedAction<Entity>([this](Entity& e, sf::Time)
 		{
@@ -281,7 +281,7 @@ namespace GEX {
 				e.setPosition();
 		});
 
-		_commandQueue.push(command);
+		_commandQueue.push(command);*/
 	}
 
 	
