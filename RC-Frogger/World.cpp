@@ -67,6 +67,7 @@ namespace GEX {
 		spawnTurtles();
 		//apply  movements 
 		_sceneGraph.update(dt, getCommandQueue());
+		// stay in bounds
 	}
 
 	void World::guideMissiles()
