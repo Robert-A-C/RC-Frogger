@@ -64,6 +64,7 @@ namespace GEX {
 		//spawnEnemies();
 		spawnCars();
 		spawnLogs();
+		spawnTurtles();
 		//apply  movements 
 		_sceneGraph.update(dt, getCommandQueue());
 	}
@@ -369,6 +370,43 @@ namespace GEX {
 		_logSpawnPoints.push_back(point);
 	}
 
+	void World::spawnTurtles()
+	{
+		while (!_turtleSpawnPoints.empty())
+		{
+			auto spawn = _turtleSpawnPoints.back();
+			std::unique_ptr<Turtles> Turtle(new Turtles(spawn.type));
+			Turtle->setPosition(spawn.x, spawn.y);
+
+			_sceneLayers[Air]->attachChild(std::move(Turtle));
+			_turtleSpawnPoints.pop_back();
+		}
+	}
+
+	void World::addTurtles()
+	{
+		addTurtle(Turtles::Type::Turtles2, 450.f, _worldView.getSize().y - 400.f);
+		addTurtle(Turtles::Type::Turtles2, 150.f, _worldView.getSize().y - 400.f);
+
+		addTurtle(Turtles::Type::Turtles3, 450.f, _worldView.getSize().y - 480.f);
+		addTurtle(Turtles::Type::Turtles3, 450.f, _worldView.getSize().y - 480.f);
+
+		addTurtle(Turtles::Type::Turtles2, 450.f, _worldView.getSize().y - 320.f);
+		addTurtle(Turtles::Type::Turtles2, 450.f, _worldView.getSize().y - 320.f);
+
+		std::sort(_turtleSpawnPoints.begin(), _turtleSpawnPoints.end(), [](TurtleSpawn lhs, TurtleSpawn rhs) {return lhs.y < rhs.y; });
+	}
+
+	void World::addTurtle(Turtles::Type type, float x, float y)
+	{
+		addTurtle(TurtleSpawn(type, x, y));
+	}
+
+	void World::addTurtle(TurtleSpawn point)
+	{
+		_turtleSpawnPoints.push_back(point);
+	}
+
 	void World::resetCars()
 	{
 		Command command;
@@ -439,6 +477,7 @@ namespace GEX {
 
 		addCars();
 		addLogs();
+		addTurtles();
 		//addEnemies();
 
 		
