@@ -118,6 +118,7 @@ namespace GEX
 		void		addTurtle(Turtles::Type type, float x, float y);
 		void		addTurtle(TurtleSpawn point);
 
+		void			adaptPlayerPostition();
 		void			buildScene();						// builds the scene
 		sf::FloatRect	getViewBounds() const;				// gets view bounds
 		sf::FloatRect	getBattleFieldBounds() const;		// gets battlefield bounds
