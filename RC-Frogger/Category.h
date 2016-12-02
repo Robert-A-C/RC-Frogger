@@ -32,6 +32,7 @@ namespace GEX {
 			Car =				1 << 6,
 			ParticleSystem =    1 << 7,
 			SoundEffect =		1 << 8,
+			Log =				1 << 9,
 
 			Airplane = Player | AlliedAircraft | EnemyAircraft,
 			Projectile = AlliedProjectile, 

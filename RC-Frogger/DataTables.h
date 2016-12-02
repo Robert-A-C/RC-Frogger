@@ -22,6 +22,7 @@ Definition for the DataTables class
 #include "Particle.h"
 #include "Frog.h"
 #include "Cars.h"
+#include "Logs.h"
 #include <map>
 
 namespace GEX {
@@ -38,6 +39,13 @@ namespace GEX {
 		TextureID texture;
 		sf::IntRect textureRect;
 		sf::Vector2f laneStartPos;
+		sf::Vector2f velocity;
+	};
+
+	struct LogData
+	{
+		TextureID texture;
+		sf::IntRect textureRect;
 		sf::Vector2f velocity;
 	};
 
@@ -83,6 +91,7 @@ namespace GEX {
 	};
 	std::map<Frog::Type, FrogData> initalizeFrogData();
 	std::map<Cars::Type, CarData> initalizeCarData();
+	std::map<Logs::Type, LogData> initalizeLogData();
 
 	std::map<Airplane::Type, AirplaneData> initalizeAircraftData();			// initalize all the data required for the airplane table
 	std::map<Projectile::Type, ProjectileData> initalizeProjectileData();	// initaliza all the data required for the projectile table
