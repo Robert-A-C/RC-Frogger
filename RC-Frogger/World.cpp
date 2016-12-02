@@ -63,6 +63,7 @@ namespace GEX {
 		//_sceneGraph.removeWrecks();
 		//spawnEnemies();
 		spawnCars();
+		spawnLogs();
 		//apply  movements 
 		_sceneGraph.update(dt, getCommandQueue());
 	}
@@ -332,6 +333,42 @@ namespace GEX {
 		_carSpawnpoints.push_back(point);
 	}
 
+	void World::spawnLogs()
+	{
+		while (!_logSpawnPoints.empty())
+		{
+			auto spawn = _logSpawnPoints.back();
+			std::unique_ptr<Logs> Log(new Logs(spawn.type));
+			Log->setPosition(spawn.x, spawn.y);
+
+			_sceneLayers[Air]->attachChild(std::move(Log));
+			_logSpawnPoints.pop_back();
+		}
+	}
+
+	void World::addLogs()
+	{
+		addLog(Logs::Type::Log2, 450.f, _worldView.getSize().y - 360.f);
+		addLog(Logs::Type::Log2, 250.f, _worldView.getSize().y - 360.f);
+		addLog(Logs::Type::Log2, 50.f, _worldView.getSize().y - 360.f);
+
+		addLog(Logs::Type::Log3, 450.f, _worldView.getSize().y - 440.f);
+		addLog(Logs::Type::Log3, 250.f, _worldView.getSize().y - 440.f);
+		addLog(Logs::Type::Log3, 50.f, _worldView.getSize().y - 440.f);
+
+		std::sort(_logSpawnPoints.begin(), _logSpawnPoints.end(), [](LogSpawn lhs, LogSpawn rhs) {return lhs.y < rhs.y; });
+	}
+
+	void World::addLog(Logs::Type type, float x, float y)
+	{
+		addLog(LogSpawn(type, x, y));
+	}
+
+	void World::addLog(LogSpawn point)
+	{
+		_logSpawnPoints.push_back(point);
+	}
+
 	void World::resetCars()
 	{
 		Command command;
@@ -401,6 +438,7 @@ namespace GEX {
 
 
 		addCars();
+		addLogs();
 		//addEnemies();
 
 		

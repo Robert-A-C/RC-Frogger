@@ -58,6 +58,21 @@ namespace GEX {
 		return data;
 	}
 
+	std::map<Logs::Type, LogData> initalizeLogData()
+	{
+		std::map<Logs::Type, LogData> data;
+
+		data[Logs::Type::Log2].texture = TextureID::FroggerAtlas;
+		data[Logs::Type::Log2].textureRect = sf::IntRect(198, 31, 93, 29);
+		data[Logs::Type::Log2].velocity = sf::Vector2f(50.f, 0.f);
+
+		data[Logs::Type::Log3].texture = TextureID::FroggerAtlas;
+		data[Logs::Type::Log3].textureRect = sf::IntRect(1, 31, 195, 28);
+		data[Logs::Type::Log3].velocity = sf::Vector2f(50.f, 0.f);
+
+		return data;
+	}
+
 	std::map<Airplane::Type, AirplaneData> GEX::initalizeAircraftData()		// initalizes data in the airplane table
 	{
 		 std::map<Airplane::Type, AirplaneData> data;
