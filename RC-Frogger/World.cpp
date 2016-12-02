@@ -67,6 +67,8 @@ namespace GEX {
 		spawnTurtles();
 		//apply  movements 
 		_sceneGraph.update(dt, getCommandQueue());
+		// stay in bounds
+		adaptPlayerPostition();
 	}
 
 	void World::guideMissiles()
@@ -151,6 +153,22 @@ namespace GEX {
 		bounds.width -= 1000;
 		bounds.height += 100;
 		return bounds;
+	}
+
+	void World::adaptPlayerPostition()
+	{
+		// Keep player's position inside the screen bounds, 
+		// at least borderDistance units from the border
+
+		sf::FloatRect viewBounds(_worldView.getCenter() - _worldView.getSize() / 2.f, _worldView.getSize());
+		const float borderDistance = 20.f;
+
+		sf::Vector2f position = _playerFrog->getPosition();
+		position.x = std::max(position.x, viewBounds.left + borderDistance);
+		position.x = std::min(position.x, viewBounds.left + viewBounds.width - borderDistance);
+		position.y = std::max(position.y, viewBounds.top + borderDistance);
+		position.y = std::min(position.y, viewBounds.top + viewBounds.height - borderDistance);
+		_playerFrog->setPosition(position);
 	}
 
 	void World::spawnEnemies()	// spawns enemies
