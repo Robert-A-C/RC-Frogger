@@ -114,6 +114,9 @@
     <ClCompile Include="Frog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Cars.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airplane.h">
@@ -222,6 +225,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Frog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cars.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

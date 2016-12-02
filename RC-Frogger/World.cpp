@@ -35,7 +35,7 @@ namespace GEX {
 		_sceneGraph(),
 		_sceneLayers(),
 		_commandQueue(),
-		_worldBounds(0.f, 0.f, _worldView.getSize().x, _worldView.getSize().y),
+		_worldBounds(-300.f, 0.f, _worldView.getSize().x + 600.f, _worldView.getSize().y),
 		_spawnPosition((_worldView.getSize().x / 2.f), (_worldBounds.height - 20.f)),
 		_scrollSpeed(0.0f),
 		_playerAirplane(nullptr)
@@ -62,7 +62,7 @@ namespace GEX {
 
 		//_sceneGraph.removeWrecks();
 		//spawnEnemies();
-
+		spawnCars();
 		//apply  movements 
 		_sceneGraph.update(dt, getCommandQueue());
 	}
@@ -146,7 +146,7 @@ namespace GEX {
 	sf::FloatRect World::getBattleFieldBounds() const		// gets battlefield bounds 
 	{
 		sf::FloatRect bounds = getViewBounds();
-		bounds.top -= 100;
+		bounds.width -= 1000;
 		bounds.height += 100;
 		return bounds;
 	}
@@ -191,6 +191,8 @@ namespace GEX {
 		point.y = _spawnPosition.y - point.y;
 		_enemieSpawnPoints.push_back(point);
 	}
+
+	
 
 	void World::updateSounds()
 	{
@@ -237,7 +239,7 @@ namespace GEX {
 				enemy.destroy();
 			}
 
-			if (matchesCategories(pair, Category::EnemyAircraft, Category::AlliedProjectile) || (matchesCategories(pair, Category::Player, Category::EnemyProjectile)))
+			if (matchesCategories(pair, Category::EnemyAircraft, Category::AlliedProjectile) || (matchesCategories(pair, Category::Player, Category::Car)))
 			{
 				auto& enemyPlane = static_cast<Airplane&>(*pair.first);
 				auto& projectile = static_cast<Projectile&>(*pair.second);
@@ -246,7 +248,7 @@ namespace GEX {
 				projectile.destroy();
 			}
 
-			if (matchesCategories(pair, Category::Player, Category::EnemyProjectile))
+			if (matchesCategories(pair, Category::Player, Category::Car))
 			{
 				auto& player = static_cast<Airplane&>(*pair.first);
 				auto& enemyProjectile = static_cast<Projectile&>(*pair.second);
@@ -270,9 +272,74 @@ namespace GEX {
 	void World::destroyEntitiesOutsideView()
 	{
 		Command command;
-		command.category = Category::Projectile | Category::EnemyAircraft;
+		command.category = Category::Car;
 		command.action = derivedAction<Entity>([this](Entity& e, sf::Time)
 		{
+			if (!getBattleFieldBounds().intersects(e.getBoundingRect()))
+				e.destroy();
+		});
+
+		_commandQueue.push(command);
+	}
+
+	
+
+	void World::spawnCars()
+	{
+		while (!_carSpawnpoints.empty())
+		{
+			auto spawn = _carSpawnpoints.back();
+			std::unique_ptr<Cars> Car(new Cars(spawn.type));
+			Car->setPosition(spawn.x, spawn.y);
+			
+			_sceneLayers[Air]->attachChild(std::move(Car));
+			_carSpawnpoints.pop_back();
+		}
+	}
+
+	void World::addCars()
+	{
+		addCar(Cars::Type::RaceCar1, 350.f, _worldView.getSize().y - 60.f);
+		addCar(Cars::Type::RaceCar1, 250.f, _worldView.getSize().y - 60.f);
+		addCar(Cars::Type::RaceCar1, 450.f, _worldView.getSize().y - 60.f);
+
+		addCar(Cars::Type::Trackter2, 150.f, _worldView.getSize().y - 100.f);
+		addCar(Cars::Type::Trackter2, 250.f, _worldView.getSize().y - 100.f);
+		addCar(Cars::Type::Trackter2, 350.f, _worldView.getSize().y - 100.f);
+
+		addCar(Cars::Type::SUV3, 250.f, _worldView.getSize().y - 140.f);
+		addCar(Cars::Type::SUV3, 350.f, _worldView.getSize().y - 140.f);
+		addCar(Cars::Type::SUV3, 450.f, _worldView.getSize().y - 140.f);
+
+		addCar(Cars::Type::RaceCar4, 50.f, _worldView.getSize().y - 180.f);
+		addCar(Cars::Type::RaceCar4, 150.f, _worldView.getSize().y - 180.f);
+		addCar(Cars::Type::RaceCar4, 250.f, _worldView.getSize().y - 180.f);
+
+		addCar(Cars::Type::Truck5, 200.f, _worldView.getSize().y - 220.f);
+		addCar(Cars::Type::Truck5, 300.f, _worldView.getSize().y - 220.f);
+		addCar(Cars::Type::Truck5, 400.f, _worldView.getSize().y - 220.f);
+
+		std::sort(_carSpawnpoints.begin(), _carSpawnpoints.end(), [](CarSpawn lhs, CarSpawn rhs) {return lhs.y < rhs.y; });
+	}
+
+	void World::addCar(Cars::Type type, float x, float y)
+	{
+		addCar(CarSpawn(type, x, y));
+	}
+
+	void World::addCar(CarSpawn point)
+	{
+		_carSpawnpoints.push_back(point);
+	}
+
+	void World::resetCars()
+	{
+		Command command;
+		command.category = Category::Car;
+		command.action = derivedAction<Entity>([this](Entity& e, sf::Time)
+		{
+		
+			
 			if (!getBattleFieldBounds().intersects(e.getBoundingRect()))
 				e.destroy();
 		});
@@ -303,7 +370,7 @@ namespace GEX {
 
 		//add background to sceneGraph
 		std::unique_ptr<SpriteNode> background(new SpriteNode(texture, textureRect));
-		background->setPosition(_worldBounds.left, _worldBounds.top);
+		background->setPosition(_worldView.getViewport().left, _worldView.getViewport().top);
 		_sceneLayers[Background]->attachChild(std::move(background));
 
 		//add finishLine
@@ -333,7 +400,7 @@ namespace GEX {
 		_sceneLayers[Air]->attachChild(std::move(frog));
 
 
-
+		addCars();
 		//addEnemies();
 
 		

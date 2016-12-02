@@ -23,6 +23,7 @@ Definition for the World class
 #include "Airplane.h"
 #include "SoundPlayer.h"
 #include "Frog.h"
+#include "Cars.h"
 
 namespace GEX 
 {
@@ -45,6 +46,19 @@ namespace GEX
 			float			y;
 		};
 
+		struct CarSpawn
+		{
+			CarSpawn(Cars::Type type, float _x, float _y) :
+				type(type),
+				x(_x),
+				y(_y)
+			{}
+
+			Cars::Type type;
+			float x;
+			float y;
+		};
+
 	public:
 		explicit	World(sf::RenderWindow& window, SoundPlayer& soundPlayer);
 
@@ -60,7 +74,12 @@ namespace GEX
 		
 
 	private:
-		
+		void		spawnCars();
+		void		addCars();
+		void		addCar(Cars::Type type, float x, float y);
+		void		addCar(CarSpawn point);
+		void		resetCars();
+
 		void			buildScene();						// builds the scene
 		sf::FloatRect	getViewBounds() const;				// gets view bounds
 		sf::FloatRect	getBattleFieldBounds() const;		// gets battlefield bounds
@@ -104,5 +123,8 @@ namespace GEX
 		Frog*									_playerFrog;
 		std::vector<SpawnPoint>					_enemieSpawnPoints;
 		std::vector<Airplane*>					_activeEnemies;
+
+		std::vector<CarSpawn>					_carSpawnpoints;
+		std::vector<Cars*>						_activeCars;
 	};
 }
