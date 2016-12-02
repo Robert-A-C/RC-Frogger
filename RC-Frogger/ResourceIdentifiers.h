@@ -47,7 +47,12 @@ namespace GEX
 		Background,
 		Frog,
 		FroggerAtlas,
-		lives
+		lives,
+		RaceCarYellow,
+		RaceCarGray,
+		SUV,
+		Truck,
+		Tracker
 
 	};
 

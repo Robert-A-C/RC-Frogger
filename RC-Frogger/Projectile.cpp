@@ -56,7 +56,7 @@ namespace GEX {
 		switch (_type)
 		{
 		case Type::ENEMYBULLET:
-			return Category::EnemyProjectile;
+			return Category::Car;
 			break;
 
 		case Type::ALLIEDBULLET:
