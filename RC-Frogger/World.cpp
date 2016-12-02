@@ -278,7 +278,7 @@ namespace GEX {
 		command.action = derivedAction<Entity>([this](Entity& e, sf::Time)
 		{
 			if (!getBattleFieldBounds().intersects(e.getBoundingRect()))
-				e.destroy();
+				e.setPosition();
 		});
 
 		_commandQueue.push(command);

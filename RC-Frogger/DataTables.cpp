@@ -42,18 +42,22 @@ namespace GEX {
 		data[Cars::Type::Trackter2].texture = TextureID::FroggerAtlas;
 		data[Cars::Type::Trackter2].textureRect = sf::IntRect(214, 62, 33, 33);
 		data[Cars::Type::Trackter2].velocity = sf::Vector2f(35.f, 0.f);
+		data[Cars::Type::RaceCar1].laneStartPos = sf::Vector2f(480, 540);
 
 		data[Cars::Type::SUV3].texture = TextureID::FroggerAtlas;
 		data[Cars::Type::SUV3].textureRect = sf::IntRect(1, 62, 35, 29);
 		data[Cars::Type::SUV3].velocity = sf::Vector2f(-35.f, 0.f);
+		data[Cars::Type::RaceCar1].laneStartPos = sf::Vector2f(480, 540);
 
 		data[Cars::Type::RaceCar4].texture = TextureID::FroggerAtlas;
 		data[Cars::Type::RaceCar4].textureRect = sf::IntRect(69, 100, 37, 37);
 		data[Cars::Type::RaceCar4].velocity = sf::Vector2f(50.f, 0.f);
+		data[Cars::Type::RaceCar1].laneStartPos = sf::Vector2f(480, 540);
 
 		data[Cars::Type::Truck5].texture = TextureID::FroggerAtlas;
 		data[Cars::Type::Truck5].textureRect = sf::IntRect(293, 1, 61, 28);
 		data[Cars::Type::Truck5].velocity = sf::Vector2f(-20.f, 0.f);
+		data[Cars::Type::RaceCar1].laneStartPos = sf::Vector2f(480, 540);
 
 		return data;
 	}
