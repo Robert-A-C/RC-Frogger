@@ -30,13 +30,13 @@ namespace GEX {
 			Pickup =			1 << 4,
 			AlliedProjectile =	1 << 5,
 			Car =				1 << 6,
-			ParticleSystem =    1 << 7,
+			Log =				 1 << 7,
 			SoundEffect =		1 << 8,
-			Log =				1 << 9,
+			
 
 			Airplane = Player | AlliedAircraft | EnemyAircraft,
 			Projectile = AlliedProjectile, 
-
+			
 			PlayerCollidesWith = Pickup | EnemyAircraft,
 			EnemyCollidesWith = Player | AlliedAircraft | AlliedProjectile
 

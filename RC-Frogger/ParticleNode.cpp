@@ -37,7 +37,7 @@ namespace GEX {
 
 	unsigned int GEX::ParticleNode::getCategory() const
 	{
-		return Category::ParticleSystem;
+		return Category::Log;
 	}
 
 	void GEX::ParticleNode::updateCurrent(sf::Time dt, CommandQueue & commands)

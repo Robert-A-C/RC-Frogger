@@ -146,6 +146,7 @@ namespace GEX
 		std::vector<Airplane*>					_activeEnemies;
 
 		std::vector<CarSpawn>					_carSpawnpoints;
-		std::vector<Cars*>						_activeCars;
+		std::vector<LogSpawn>					_logSpawnPoints;
+		
 	};
 }

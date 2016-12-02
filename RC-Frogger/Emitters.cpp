@@ -21,7 +21,7 @@ namespace GEX {
 			};
 
 			Command command;
-			command.category = Category::ParticleSystem;
+			command.category = Category::Log;
 			command.action = derivedAction<ParticleNode>(finder);
 
 			commands.push(command);
