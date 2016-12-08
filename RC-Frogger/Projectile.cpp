@@ -61,7 +61,7 @@ namespace GEX {
 
 		case Type::ALLIEDBULLET:
 		case Type::MISSILE:
-			return Category::AlliedProjectile;
+			return Category::Turtle;
 			break;
 
 		default:

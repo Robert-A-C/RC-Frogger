@@ -30,9 +30,9 @@ namespace GEX
 	// sfml uses degrees not radians, provide conviniance sin and cos 
 	// for angles in degrees
 	// Converts degrees to and from radians.
-	const float M_PI = 3.14159265f;
-	inline float	degreesToRadians(float degrees) { return degrees * M_PI / 180.f; }
-	inline float	radiansToDegrees(float rads) { return rads * 180.f / M_PI; }
+	const float PI = 3.14159265f;
+	inline float	degreesToRadians(float degrees) { return degrees * PI / 180.f; }
+	inline float	radiansToDegrees(float rads) { return rads * 180.f / PI; }
 	inline float	sin(float deg) { return std::sin(degreesToRadians(deg)); }
 	inline float	cos(float deg) { return std::cos(degreesToRadians(deg)); }
 	inline float	atan2(float opp, float adj) { return radiansToDegrees(std::atan2(opp, adj)); }

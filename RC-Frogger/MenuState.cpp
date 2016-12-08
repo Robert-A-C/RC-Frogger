@@ -41,7 +41,7 @@ namespace GEX
 		sf::Text playOption;
 		playOption.setFont(font);
 		playOption.setString("Play");
-		playOption.setOutlineThickness(1);
+		playOption.setOutlineThickness(1.f);
 		centerOrigin(playOption);
 		playOption.setPosition(context.window->getView().getSize() / 2.f);
 		_options.push_back(playOption);
@@ -49,7 +49,7 @@ namespace GEX
 		sf::Text exitOption;
 		exitOption.setFont(font);
 		exitOption.setString("Exit");
-		exitOption.setOutlineThickness(1);
+		exitOption.setOutlineThickness(1.f);
 		centerOrigin(exitOption);
 		exitOption.setPosition(playOption.getPosition() + sf::Vector2f(0.f, 30.f));
 		_options.push_back(exitOption);

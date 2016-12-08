@@ -39,14 +39,17 @@ namespace GEX
 
 		_pausedText.setFont(font);										//
 		_pausedText.setString("Game Paused");							//
-		_pausedText.setCharacterSize(70);								// sets paused text
+		_pausedText.setCharacterSize(60);								// sets paused text
 		centerOrigin(_pausedText);										//
 		_pausedText.setPosition(0.5f * viewSize.x, 0.4f * viewSize.y);	//
 
 		_instructionText.setFont(font);													 // 
 		_instructionText.setString("(Press Backspace to return to the main menu)");		 //  sets instruction text
+
+_instructionText.setCharacterSize(20);
 		centerOrigin(_instructionText);													 // 
-		_instructionText.setPosition(0.5f * viewSize.x, 0.6f * viewSize.y);				 //
+		_instructionText.setPosition(0.5f * viewSize.x, 0.6f * viewSize.y);
+		//
 	}
 
 	void PauseState::draw()				// draws the window
