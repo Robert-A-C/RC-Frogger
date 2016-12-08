@@ -15,7 +15,7 @@ Definition for the World class
 
 */
 #pragma once
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include "SceneNode.h"
 #include <array>
 #include <vector>

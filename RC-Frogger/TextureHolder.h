@@ -15,7 +15,7 @@ Definition for the TextureHolder class
 
 */
 #pragma once
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <memory>
 #include <map>
 #include "ResourceIdentifiers.h"

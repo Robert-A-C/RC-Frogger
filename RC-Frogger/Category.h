@@ -28,17 +28,17 @@ namespace GEX {
 			AlliedAircraft =	1 << 2,
 			EnemyAircraft =		1 << 3,
 			Pickup =			1 << 4,
-			AlliedProjectile =	1 << 5,
+			Turtle =			1 << 5,
 			Car =				1 << 6,
 			Log =				 1 << 7,
 			SoundEffect =		1 << 8,
 			
 
 			Airplane = Player | AlliedAircraft | EnemyAircraft,
-			Projectile = AlliedProjectile, 
+			Projectile = Turtle, 
 			
 			PlayerCollidesWith = Pickup | EnemyAircraft,
-			EnemyCollidesWith = Player | AlliedAircraft | AlliedProjectile
+			EnemyCollidesWith = Player | AlliedAircraft | Turtle
 
 		};
 	}

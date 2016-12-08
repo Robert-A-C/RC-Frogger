@@ -83,7 +83,7 @@ namespace GEX {
 		});
 
 		Command missileGuider;
-		missileGuider.category = Category::AlliedProjectile;
+		missileGuider.category = Category::Turtle;
 		missileGuider.action = derivedAction<Projectile>([this](Projectile& missile, sf::Time dt)
 		{
 			if (!missile.isGuided())
@@ -259,7 +259,7 @@ namespace GEX {
 				enemy.destroy();
 			}
 
-			if (matchesCategories(pair, Category::EnemyAircraft, Category::AlliedProjectile) || (matchesCategories(pair, Category::Player, Category::Car)))
+			if (matchesCategories(pair, Category::EnemyAircraft, Category::Turtle) || (matchesCategories(pair, Category::Player, Category::Car)))
 			{
 				auto& enemyPlane = static_cast<Airplane&>(*pair.first);
 				auto& projectile = static_cast<Projectile&>(*pair.second);
@@ -367,13 +367,13 @@ namespace GEX {
 
 	void World::addLogs()
 	{
-		addLog(Logs::Type::Log2, 450.f, _worldView.getSize().y - 360.f);
-		addLog(Logs::Type::Log2, 250.f, _worldView.getSize().y - 360.f);
-		addLog(Logs::Type::Log2, 50.f, _worldView.getSize().y - 360.f);
+		addLog(Logs::Type::Log2, 450.f, _worldView.getSize().y - 340.f);
+		addLog(Logs::Type::Log2, 250.f, _worldView.getSize().y - 340.f);
+		addLog(Logs::Type::Log2, 50.f, _worldView.getSize().y - 340.f);
 
-		addLog(Logs::Type::Log3, 450.f, _worldView.getSize().y - 440.f);
-		addLog(Logs::Type::Log3, 250.f, _worldView.getSize().y - 440.f);
-		addLog(Logs::Type::Log3, 50.f, _worldView.getSize().y - 440.f);
+		addLog(Logs::Type::Log3, 450.f, _worldView.getSize().y - 420.f);
+		addLog(Logs::Type::Log3, 250.f, _worldView.getSize().y - 420.f);
+		addLog(Logs::Type::Log3, 50.f, _worldView.getSize().y - 420.f);
 
 		std::sort(_logSpawnPoints.begin(), _logSpawnPoints.end(), [](LogSpawn lhs, LogSpawn rhs) {return lhs.y < rhs.y; });
 	}
@@ -403,14 +403,14 @@ namespace GEX {
 
 	void World::addTurtles()
 	{
-		addTurtle(Turtles::Type::Turtles2, 450.f, _worldView.getSize().y - 400.f);
-		addTurtle(Turtles::Type::Turtles2, 150.f, _worldView.getSize().y - 400.f);
+		addTurtle(Turtles::Type::Turtles2, 450.f, _worldView.getSize().y - 380.f);
+		addTurtle(Turtles::Type::Turtles2, 150.f, _worldView.getSize().y - 380.f);
 
-		addTurtle(Turtles::Type::Turtles3, 450.f, _worldView.getSize().y - 480.f);
-		addTurtle(Turtles::Type::Turtles3, 450.f, _worldView.getSize().y - 480.f);
+		addTurtle(Turtles::Type::Turtles3, 450.f, _worldView.getSize().y - 460.f);
+		addTurtle(Turtles::Type::Turtles3, 450.f, _worldView.getSize().y - 460.f);
 
-		addTurtle(Turtles::Type::Turtles2, 450.f, _worldView.getSize().y - 320.f);
-		addTurtle(Turtles::Type::Turtles2, 450.f, _worldView.getSize().y - 320.f);
+		addTurtle(Turtles::Type::Turtles2, 450.f, _worldView.getSize().y - 300.f);
+		addTurtle(Turtles::Type::Turtles2, 450.f, _worldView.getSize().y - 300.f);
 
 		std::sort(_turtleSpawnPoints.begin(), _turtleSpawnPoints.end(), [](TurtleSpawn lhs, TurtleSpawn rhs) {return lhs.y < rhs.y; });
 	}
