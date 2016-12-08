@@ -72,6 +72,11 @@ namespace GEX {
 		}
 	}
 
+	void Frog::die()
+	{
+		_lives -= 1;		
+	}
+
 
 
 }

@@ -19,12 +19,13 @@ namespace GEX {
 		sf::FloatRect getBoundingRect() const override;
 
 		void playLocalSound(CommandQueue& commands, SoundEffectID effect);
-		
+		void die();
 
 	private:
 		void updateCurrent(sf::Time dt, CommandQueue& command) override;
 		void movementUpdate(sf::Time dt);
 		void drawCurrent(sf::RenderTarget & target, sf::RenderStates state) const;
+		
 
 	private:
 		Type _type;

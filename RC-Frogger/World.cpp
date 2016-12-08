@@ -58,7 +58,7 @@ namespace GEX {
 		while (!_commandQueue.isEmpty())
 			_sceneGraph.onCommand(_commandQueue.pop(), dt);
 
-		//handleCollisions();
+		handleCollisions();
 
 		//_sceneGraph.removeWrecks();
 		//spawnEnemies();
@@ -69,6 +69,7 @@ namespace GEX {
 		_sceneGraph.update(dt, getCommandQueue());
 		// stay in bounds
 		adaptPlayerPostition();
+		
 	}
 
 	void World::guideMissiles()
@@ -250,42 +251,16 @@ namespace GEX {
 
 		for (SceneNode::Pair pair : collisionPairs)
 		{
-			if (matchesCategories(pair, Category::Player, Category::EnemyAircraft))
-			{
-				auto& player = static_cast<Airplane&>(*pair.first);
-				auto& enemy = static_cast<Airplane&>(*pair.second);
-
-				player.damage(enemy.getHitpoints());
-				enemy.destroy();
-			}
-
-			if (matchesCategories(pair, Category::EnemyAircraft, Category::Turtle) || (matchesCategories(pair, Category::Player, Category::Car)))
-			{
-				auto& enemyPlane = static_cast<Airplane&>(*pair.first);
-				auto& projectile = static_cast<Projectile&>(*pair.second);
-
-				enemyPlane.damage(projectile.getHitpoints());
-				projectile.destroy();
-			}
-
 			if (matchesCategories(pair, Category::Player, Category::Car))
 			{
-				auto& player = static_cast<Airplane&>(*pair.first);
-				auto& enemyProjectile = static_cast<Projectile&>(*pair.second);
+				auto& player = static_cast<Frog&>(*pair.first);
+				auto& enemy = static_cast<Cars&>(*pair.second);
 
-				player.damage(enemyProjectile.getHitpoints());
-				enemyProjectile.destroy();
+				player.die();
+				player.setPosition(_spawnPosition);
 			}
 
-			if (matchesCategories(pair, Category::Player, Category::Pickup))
-			{
-				auto& player = static_cast<Airplane&>(*pair.first);
-				auto& pickup = static_cast<Pickup&>(*pair.second);
-
-				pickup.apply(player);
-				pickup.destroy();
-				player.playLocalSound(_commandQueue, SoundEffectID::CollectPickup);
-			}
+			
 
 		}
 	}
