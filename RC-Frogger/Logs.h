@@ -18,6 +18,7 @@ namespace GEX {
 		unsigned int getCategory() const override;
 		sf::FloatRect getBoundingRect() const override;
 
+
 	private:
 		void drawCurrent(sf::RenderTarget& target, sf::RenderStates state) const;
 		void updateCurrent(sf::Time dt, CommandQueue& command) override;

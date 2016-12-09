@@ -30,7 +30,7 @@ namespace GEX {
 			Pickup =			1 << 4,
 			Turtle =			1 << 5,
 			Car =				1 << 6,
-			Log =				 1 << 7,
+			Log =				1 << 7,
 			SoundEffect =		1 << 8,
 			
 

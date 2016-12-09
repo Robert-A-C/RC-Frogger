@@ -33,7 +33,7 @@ namespace GEX
 
 	struct FrogMover
 	{
-		FrogMover(float vx, float vy) : movement(vx, vy) {}
+		FrogMover(float dx, float dy) : movement(dx, dy) {}
 		void operator()(Frog& frog, sf::Time) const
 		{
 			frog.setPosition(frog.getPosition() + movement);

@@ -12,21 +12,17 @@ namespace GEX {
 		_lives(3),
 		_type(type),
 		_sprite(TextureHolder::getInstance().get(table.at(type).texture), table.at(type).textureRect),
-		_life(TextureHolder::getInstance().get(TextureID::FroggerAtlas), sf::IntRect(397, 99, 34, 41))
+		_life(TextureHolder::getInstance().get(TextureID::FroggerAtlas), sf::IntRect(397, 99, 34, 41))		
 	{
 		centerOrigin(_sprite);
+
 	}
 
 	unsigned int Frog::getCategory() const
 	{
-		switch (_type)
-		{
-		case Type::Frogger:
-			return Category::Player;
 		
-		default:
-			assert(0);
-		}
+			return Category::Player;		
+		
 	}
 
 	sf::FloatRect Frog::getBoundingRect() const
@@ -51,7 +47,7 @@ namespace GEX {
 
 	void Frog::updateCurrent(sf::Time dt, CommandQueue & command)
 	{
-		
+		Entity::updateCurrent(dt, command);
 		
 	}
 
@@ -63,6 +59,7 @@ namespace GEX {
 	void Frog::drawCurrent(sf::RenderTarget & target, sf::RenderStates state) const
 	{
 		target.draw(_sprite, state);
+		
 		_life.setPosition(440.f, 5.f);
 		
 		for (int i = 0; i < _lives; ++i)

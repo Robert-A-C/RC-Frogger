@@ -12,6 +12,7 @@ namespace GEX {
 		_sprite(TextureHolder::getInstance().get(table.at(type).texture), table.at(type).textureRect)
 	{
 		centerOrigin(_sprite);
+		setVelocity(table.at(_type).velocity);
 
 	}
 
@@ -41,7 +42,7 @@ namespace GEX {
 
 	void Logs::updateCurrent(sf::Time dt, CommandQueue & command)
 	{
-		setVelocity(table.at(_type).velocity);
+		
 
 		switch (_type)
 		{

@@ -38,7 +38,9 @@ namespace GEX {
 		_worldBounds(-300.f, 0.f, _worldView.getSize().x + 600.f, _worldView.getSize().y),
 		_spawnPosition((_worldView.getSize().x / 2.f), (_worldBounds.height - 20.f)),
 		_scrollSpeed(0.0f),
-		_playerAirplane(nullptr)
+		_playerAirplane(nullptr),
+		_isInRiver(false),
+		_beforeRiver(320.f)
 	{
 
 
@@ -49,11 +51,7 @@ namespace GEX {
 	}
 
 	void World::update(sf::Time dt)		// updates everything
-	{
-		
-
-
-		
+	{		
 
 		while (!_commandQueue.isEmpty())
 			_sceneGraph.onCommand(_commandQueue.pop(), dt);
@@ -246,6 +244,8 @@ namespace GEX {
 
 	void World::handleCollisions()
 	{
+
+		_isInRiver = true;
 		std::set<SceneNode::Pair> collisionPairs;
 		_sceneGraph.checkSceneNodeCollision(_sceneGraph, collisionPairs);
 
@@ -260,8 +260,21 @@ namespace GEX {
 				player.setPosition(_spawnPosition);
 			}
 
-			
+			if (matchesCategories(pair, Category::Player, Category::Log))//if the player collides with a log so he travels with it
+			{
+				auto& player = static_cast<Frog&>(*pair.first);
+				auto& log = static_cast<Logs&>(*pair.second);
 
+				player.setVelocity(log.getVelocity().x, 0.f);
+				_isInRiver = false;
+			}
+
+			if (_playerFrog->getPosition().y > _beforeRiver)			
+				_playerFrog->setVelocity(0.f, 0.f);
+
+			else if (_playerFrog->getPosition().y < _beforeRiver && _isInRiver == true)
+				_playerFrog->die();
+				
 		}
 	}
 	void World::destroyEntitiesOutsideView()
@@ -335,7 +348,7 @@ namespace GEX {
 			std::unique_ptr<Logs> Log(new Logs(spawn.type));
 			Log->setPosition(spawn.x, spawn.y);
 
-			_sceneLayers[Air]->attachChild(std::move(Log));
+			_sceneLayers[Ground]->attachChild(std::move(Log));
 			_logSpawnPoints.pop_back();
 		}
 	}
@@ -371,7 +384,7 @@ namespace GEX {
 			std::unique_ptr<Turtles> Turtle(new Turtles(spawn.type));
 			Turtle->setPosition(spawn.x, spawn.y);
 
-			_sceneLayers[Air]->attachChild(std::move(Turtle));
+			_sceneLayers[Ground]->attachChild(std::move(Turtle));
 			_turtleSpawnPoints.pop_back();
 		}
 	}
@@ -462,15 +475,17 @@ namespace GEX {
 		_playerAirplane = plane.get();
 		_sceneLayers[Air]->attachChild(std::move(plane));*/
 
+		addCars();
+		addLogs();
+		addTurtles();
+
 		std::unique_ptr<Frog> frog(new Frog(Frog::Type::Frogger));
 		frog->setPosition(_spawnPosition);
 		_playerFrog = frog.get();
 		_sceneLayers[Air]->attachChild(std::move(frog));
 
 
-		addCars();
-		addLogs();
-		addTurtles();
+		
 		//addEnemies();
 
 		
