@@ -139,7 +139,7 @@ namespace GEX
 		{
 			
 			Background,
-			FinishLine,
+			Ground,
 			Air,
 			LayerCount			
 		};
@@ -167,6 +167,7 @@ namespace GEX
 		std::vector<LogSpawn>					_logSpawnPoints;
 		std::vector<TurtleSpawn>				_turtleSpawnPoints;
 		bool									_isInRiver;
+		float									_beforeRiver;
 		
 	};
 }

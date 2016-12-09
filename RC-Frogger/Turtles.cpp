@@ -12,7 +12,7 @@ namespace GEX {
 		_sprite(TextureHolder::getInstance().get(table.at(type).texture), table.at(type).textureRect)
 	{
 		centerOrigin(_sprite);
-
+		setVelocity(table.at(_type).velocity);
 	}
 
 	unsigned int Turtles::getCategory() const
@@ -45,7 +45,7 @@ namespace GEX {
 
 	void Turtles::updateCurrent(sf::Time dt, CommandQueue & command)
 	{
-		setVelocity(table.at(_type).velocity);
+		
 
 		switch (_type)
 		{
