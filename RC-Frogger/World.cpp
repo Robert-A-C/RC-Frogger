@@ -38,7 +38,8 @@ namespace GEX {
 		_worldBounds(-300.f, 0.f, _worldView.getSize().x + 600.f, _worldView.getSize().y),
 		_spawnPosition((_worldView.getSize().x / 2.f), (_worldBounds.height - 20.f)),
 		_scrollSpeed(0.0f),
-		_playerAirplane(nullptr)
+		_playerAirplane(nullptr),
+		_isInRiver(false)
 	{
 
 
@@ -260,7 +261,15 @@ namespace GEX {
 				player.setPosition(_spawnPosition);
 			}
 
+			if (matchesCategories(pair, Category::Player, Category::Log))
+			{
+				auto& player = static_cast<Frog&>(*pair.first);
+				auto& enemy = static_cast<Cars&>(*pair.second);
+								
+				player.setVelocity(enemy.getVelocity());
+							
 			
+			}
 
 		}
 	}
