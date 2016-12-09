@@ -12,7 +12,7 @@ namespace GEX {
 		_lives(3),
 		_type(type),
 		_sprite(TextureHolder::getInstance().get(table.at(type).texture), table.at(type).textureRect),
-		_life(TextureHolder::getInstance().get(TextureID::lives), sf::IntRect(397, 99, 34, 41))
+		_life(TextureHolder::getInstance().get(TextureID::FroggerAtlas), sf::IntRect(397, 99, 34, 41))
 	{
 		centerOrigin(_sprite);
 	}

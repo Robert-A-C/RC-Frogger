@@ -93,7 +93,7 @@ namespace GEX {
 	}
 
 
-	std::map<Airplane::Type, AirplaneData> GEX::initalizeAircraftData()		// initalizes data in the airplane table
+	std::map<Airplane::Type, AirplaneData> initalizeAircraftData()		// initalizes data in the airplane table
 	{
 		 std::map<Airplane::Type, AirplaneData> data;
 
@@ -122,7 +122,7 @@ namespace GEX {
 
 		 return data;
 	}
-	std::map<Projectile::Type, ProjectileData> GEX::initalizeProjectileData()	// initalizes projectile data in projectile table
+	std::map<Projectile::Type, ProjectileData> initalizeProjectileData()	// initalizes projectile data in projectile table
 	{
 		std::map<Projectile::Type, ProjectileData> data;
 
@@ -145,7 +145,7 @@ namespace GEX {
 		return data;
 	}
 
-	std::map<Pickup::Type, PickupData> GEX::initalizePickupData()	// initalizes pickup data in pickup table
+	std::map<Pickup::Type, PickupData> initalizePickupData()	// initalizes pickup data in pickup table
 	{
 		std::map<Pickup::Type, PickupData> data;
 
@@ -168,7 +168,7 @@ namespace GEX {
 		return data;
 	}
 
-	std::map<Particle::Type, ParticleData> GEX::initalizeParticleData()
+	std::map<Particle::Type, ParticleData> initalizeParticleData()
 	{
 		std::map<Particle::Type, ParticleData> data;
 
